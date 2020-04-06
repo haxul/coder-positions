@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  postgres:
+    container_name: postgres_container
+    image: postgres
+    environment:
+      POSTGRES_USER: haxul
+      POSTGRES_PASSWORD: haxul
+      POSTGRES_DB: headhunter
+      PGDATA: /data/postgres
+    ports:
+      - "5433:5432"
+    networks:
+      - postgres
+    restart: always
+
+networks:
+  postgres:
+    driver: bridge
