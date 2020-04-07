@@ -4,6 +4,8 @@ services:
   postgres:
     container_name: postgres_container
     image: postgres
+    volumes:
+    - ./pg_data:/var/lib/postgresql/data/pgdata
     environment:
       POSTGRES_USER: haxul
       POSTGRES_PASSWORD: haxul
