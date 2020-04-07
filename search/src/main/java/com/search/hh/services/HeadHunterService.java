@@ -13,8 +13,6 @@ public class HeadHunterService {
     public HeadhunterSearchResponse findPositions (String searchText, int areaId) throws JsonProcessingException {
         String responseBody = Unirest.get( BASE_URL + "vacancies/?area=" + areaId +"&text=" + searchText)
                 .header("Accept", "application/json")
-                .header("Cache-Control", "no-cache")
-                .header("cache-control", "no-cache")
                 .asString().getBody();
         ObjectMapper mapper = new ObjectMapper();
 
@@ -22,4 +20,7 @@ public class HeadHunterService {
         return response;
     }
 
+    public HeadhunterSearchResponse findPositions (String searchText) throws JsonProcessingException {
+        return findPositions(searchText, 78);
+    }
 }
