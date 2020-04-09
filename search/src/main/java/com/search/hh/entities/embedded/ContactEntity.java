@@ -19,7 +19,6 @@ public class ContactEntity {
     private String contactName;
     @Email
     private String contactEmail;
-
     @Embedded
     private PhoneEntity contactPhone;
 

@@ -1,11 +1,11 @@
 package com.search.hh.models;
 
-public enum CityId {
+public enum City {
     SAMARA(78);
 
     private int id;
 
-    CityId(int id) {
+    City(int id) {
         this.id = id;
     }
 

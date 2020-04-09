@@ -10,7 +10,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
@@ -52,4 +51,7 @@ public class PositionEntity {
 
     @Embedded
     private ContactEntity contact;
+
+    @Column(name = "headhunter_id")
+    private int headHunterId;
 }
