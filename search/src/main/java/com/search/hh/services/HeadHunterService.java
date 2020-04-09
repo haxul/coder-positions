@@ -2,6 +2,7 @@ package com.search.hh.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.search.hh.models.CityId;
 import com.search.hh.models.response.headhunter.HeadhunterSearchResponse;
 import kong.unirest.Unirest;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,6 @@ public class HeadHunterService {
     }
 
     public HeadhunterSearchResponse findPositions (String searchText) throws JsonProcessingException {
-        return findPositions(searchText, 78);
+        return findPositions(searchText, CityId.SAMARA.getId());
     }
 }
