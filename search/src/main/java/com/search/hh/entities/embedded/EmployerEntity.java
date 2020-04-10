@@ -1,5 +1,6 @@
 package com.search.hh.entities.embedded;
 
+import lombok.AllArgsConstructor;
 import lombok.Generated;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,6 +12,7 @@ import javax.validation.constraints.Size;
 @Generated
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class EmployerEntity {
     @Size(max = 1000)
     private String employerName;

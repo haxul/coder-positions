@@ -19,7 +19,7 @@ public class PositionController {
     @PostMapping(value = "/all/{city}/{position}")
     @ResponseStatus(value = HttpStatus.CREATED)
     public String saveNewPosition(@PathVariable City city, @PathVariable String position) throws JsonProcessingException {
-        positionService.savePosition(city, position);
-        return "ok";
+        int updatedPosition = positionService.savePosition(city, position);
+        return "Updated " + updatedPosition;
     }
 }
