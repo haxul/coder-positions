@@ -15,6 +15,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -46,17 +47,18 @@ public class PositionServiceImpl implements PositionService {
 
     @Override
     public int savePosition(City city, String position) throws JsonProcessingException {
-        HeadhunterSearchResponse actualPositions = findPositions(position, city.getId());
-        if (actualPositions.getItems().isEmpty()) return 0;
+        HeadhunterSearchResponse inputPositions = findPositions(position, city.getId());
+        if (inputPositions.getItems().isEmpty()) return 0;
         List<PositionEntity> currentSavedPositions = positionRepository.findAll();
-        List<PositionEntity> positionsToSave = actualPositions.getItems().stream().
+        List<WeakReference<PositionEntity>> positionsToSave = inputPositions.getItems().stream().
                 filter(p -> !isExistInList(p, currentSavedPositions)).
                 map(p -> {
+
                     PositionEntity positionEntity = new PositionEntity();
                     positionEntity.setHeadHunterId(p.getId());
                     positionEntity.setTitle(p.getName());
                     positionEntity.setArea(new AreaEntity(p.getArea().getId(), p.getArea().getName()));
-                    SalaryEntity salaryEntity =  (p.getSalary() != null) ?
+                    SalaryEntity salaryEntity = (p.getSalary() != null) ?
                             new SalaryEntity(p.getSalary().getFrom(), p.getSalary().getTo(), p.getSalary().getCurrency())
                             : null;
                     positionEntity.setSalary(salaryEntity);
@@ -83,16 +85,16 @@ public class PositionServiceImpl implements PositionService {
                         contact.setContactPhone(phoneEntity);
                     }
                     positionEntity.setContact(contact);
-                    return positionEntity;
+                    positionRepository.save(positionEntity);
+                    return new WeakReference<>(positionEntity);
                 }).collect(Collectors.toList());
-        positionRepository.saveAll(positionsToSave);
         currentSavedPositions.clear();
         return positionsToSave.size();
     }
 
     public boolean isExistInList(HhData hhData, List<PositionEntity> currentSavedPositions) {
         for (PositionEntity position : currentSavedPositions) {
-            if (position.getId() == hhData.getId()) return true;
+            if (position.getHeadHunterId() == hhData.getId()) return true;
         }
         return false;
     }
