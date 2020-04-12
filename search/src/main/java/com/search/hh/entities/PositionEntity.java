@@ -11,6 +11,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -22,6 +23,8 @@ public class PositionEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "is_favorite")
+    private boolean isFavorite = false;
     @Column(name = "title")
     @Size(max = 200)
     private String title;
@@ -41,17 +44,17 @@ public class PositionEntity {
     @Column(name = "published")
     private Date published;
 
-    @Column(name = "requirement")
-    @Size(max = 10000)
-    private String requirement;
-
-    @Column(name = "responsibility")
-    @Size(max = 10000)
-    private String responsibility;
-
+    @Column(name = "description", length = 10000)
+    private String description;
     @Embedded
     private ContactEntity contact;
 
     @Column(name = "headhunter_id")
     private int headHunterId;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<SkillEntity> skills;
+
+    @Column(name="experience")
+    private String experience;
 }
