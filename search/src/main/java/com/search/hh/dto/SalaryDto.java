@@ -1,4 +1,4 @@
-package com.search.hh.entities.embedded;
+package com.search.hh.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,10 +13,9 @@ import javax.validation.constraints.Size;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SalaryEntity {
+public class SalaryDto {
 
     private Integer salaryFrom;
     private Integer salaryTo;
-    @Size(max = 50)
     private String currency;
 }

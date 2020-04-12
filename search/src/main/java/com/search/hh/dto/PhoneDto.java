@@ -1,4 +1,4 @@
-package com.search.hh.entities.embedded;
+package com.search.hh.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,14 +9,14 @@ import javax.persistence.Embeddable;
 import javax.validation.constraints.Size;
 
 @Embeddable
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SalaryEntity {
+public class PhoneDto {
 
-    private Integer salaryFrom;
-    private Integer salaryTo;
-    @Size(max = 50)
-    private String currency;
+    private String phoneComment;
+    private String phoneCity;
+    private String phoneNumber;
+    private String country;
 }

@@ -1,4 +1,4 @@
-package com.search.hh.entities.embedded;
+package com.search.hh.dto;
 
 import lombok.*;
 
@@ -11,9 +11,7 @@ import javax.validation.constraints.Size;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class EmployerEntity {
-    @Size(max = 1000)
+public class EmployerDto {
     private String employerName;
-    @Size(max = 1000)
     private String employerUrl;
 }

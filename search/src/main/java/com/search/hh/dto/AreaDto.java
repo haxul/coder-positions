@@ -1,4 +1,4 @@
-package com.search.hh.entities.embedded;
+package com.search.hh.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,7 +12,7 @@ import javax.persistence.Embeddable;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AreaEntity {
+public class AreaDto {
     private int areaId;
     private String areaName;
 }
