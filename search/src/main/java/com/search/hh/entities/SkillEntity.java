@@ -5,12 +5,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
+@Table(name = "skill")
 public class SkillEntity {
 
     @Id
@@ -20,7 +22,6 @@ public class SkillEntity {
     @Column(name = "name")
     private String name;
 
-    public SkillEntity(String name) {
-        this.name = name;
-    }
+    @ManyToMany
+    private List<PositionEntity> positions = new ArrayList<>();
 }

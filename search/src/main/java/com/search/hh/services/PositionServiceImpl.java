@@ -19,7 +19,9 @@ import org.springframework.stereotype.Service;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -106,19 +108,27 @@ public class PositionServiceImpl implements PositionService {
     public PositionDto findPositionById(int id) throws JsonProcessingException {
         PositionEntity position = positionRepository.findById(id).orElseThrow(PositionNotFound::new);
         if (position.getDescription() != null) return modelMapper.map(position, PositionDto.class);
+
         HeadHunterPositionByIdResponse response = findPositionByIdInHH(position.getHeadHunterId());
         position.setDescription(response.getDescription());
-        position.setExperience(response.getExperience().getName());
+        position.setExperience(response.getExperience().getId());
 
-        List<SkillEntity> skillEntities = new ArrayList<>();
+        List<SkillEntity> positionSkillsList = position.getSkills();
 
-        response.getKeySkills().forEach(element -> {
+        for (var element : response.getKeySkills()) {
             SkillEntity skill = skillRepository.findSkillEntitiesByName(element.getName());
-            if (skill == null) skillRepository.save(new SkillEntity(element.getName()));
-            skillEntities.add(skill);
-        });
+            if (skill == null) {
+                SkillEntity skillEntity = new SkillEntity();
+                skillEntity.setName(element.getName());
+                List<PositionEntity> list = skillEntity.getPositions();
+                list.add(position);
+                skillEntity.setPositions(list);
+                skillRepository.save(skillEntity);
+            }
+            positionSkillsList.add(skill);
+        }
 
-        position.setSkills(skillEntities);
+        position.setSkills(positionSkillsList);
         positionRepository.save(position);
         return modelMapper.map(position, PositionDto.class);
     }

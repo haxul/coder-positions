@@ -36,34 +36,58 @@ public class HeadHunterPositionByIdResponse {
     @JsonIgnore
     private Site site;
     private Experience experience;
-    @JsonIgnore private Schedule schedule;
-    @JsonIgnore Employment employment;
-    @JsonIgnore private String department;
+    @JsonIgnore
+    private Schedule schedule;
+    @JsonIgnore
+    private Employment employment;
+    @JsonIgnore
+    private String department;
     @JsonIgnore private String contacts;
     private String description;
-    @JsonIgnore private String branded_description;
-    @JsonIgnore private String vacancy_constructor_template;
+    @JsonIgnore
+    private String branded_description;
+    @JsonIgnore
+    private String vacancy_constructor_template;
     @JsonProperty(value = "key_skills")
     private List<Skill> keySkills;
-    @JsonIgnore private boolean accept_handicapped;
-    @JsonIgnore private boolean accept_kids;
-    @JsonIgnore private boolean archived;
-    @JsonIgnore private String response_url;
-    @JsonIgnore List<Object> specializations;
-    @JsonIgnore private String code;
-    @JsonIgnore private boolean hidden;
-    @JsonIgnore private boolean quick_responses_allowed;
-    @JsonIgnore List<Object> driver_license_types;
-    @JsonIgnore private boolean accept_incomplete_resumes;
-    @JsonIgnore EmployerHh employer;
-    @JsonIgnore private String published_at;
-    @JsonIgnore private String created_at;
-    @JsonIgnore private String negotiations_url;
-    @JsonIgnore private String suitable_resumes_url;
-    @JsonIgnore private String apply_alternate_url;
-    @JsonIgnore private boolean has_test;
-    @JsonIgnore private String test;
-    @JsonIgnore private String alternate_url;
+    @JsonIgnore
+    private boolean accept_handicapped;
+    @JsonIgnore
+    private boolean accept_kids;
+    @JsonIgnore
+    private boolean archived;
+    @JsonIgnore
+    private String response_url;
+    @JsonIgnore
+    List<Object> specializations;
+    @JsonIgnore
+    private String code;
+    @JsonIgnore
+    private boolean hidden;
+    @JsonIgnore
+    private boolean quick_responses_allowed;
+    @JsonIgnore
+    private List<Object> driver_license_types;
+    @JsonIgnore
+    private boolean accept_incomplete_resumes;
+    @JsonIgnore
+    private EmployerHh employer;
+    @JsonIgnore
+    private String published_at;
+    @JsonIgnore
+    private String created_at;
+    @JsonIgnore
+    private String negotiations_url;
+    @JsonIgnore
+    private String suitable_resumes_url;
+    @JsonIgnore
+    private String apply_alternate_url;
+    @JsonIgnore
+    private boolean has_test;
+    @JsonIgnore
+    private String test;
+    @JsonIgnore
+    private String alternate_url;
 
 }
 
