@@ -10,6 +10,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,6 +18,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@Table(name = "position")
 public class PositionEntity {
 
     @Id
@@ -46,14 +48,15 @@ public class PositionEntity {
 
     @Column(name = "description", length = 10000)
     private String description;
+
     @Embedded
     private ContactEntity contact;
 
     @Column(name = "headhunter_id")
     private int headHunterId;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    private List<SkillEntity> skills;
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "positions")
+    private List<SkillEntity> skills = new ArrayList<>();
 
     @Column(name="experience")
     private String experience;
