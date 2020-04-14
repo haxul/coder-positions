@@ -48,6 +48,7 @@ public class PositionEntity {
 
     @Column(name = "description", length = 10000)
     private String description;
+
     @Embedded
     private ContactEntity contact;
 

@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Bean;
 
 import static org.modelmapper.config.Configuration.AccessLevel.PRIVATE;
 
-//import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @SpringBootApplication
-//@EnableEurekaClient
+@EnableEurekaClient
 public class HhApplication {
 
     public static void main(String[] args) {
